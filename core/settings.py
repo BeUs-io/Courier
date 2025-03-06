@@ -138,6 +138,8 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
 
+# STATIC_ROOT = os.path.join(BASE_DIR, Staticfiles)
+
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type

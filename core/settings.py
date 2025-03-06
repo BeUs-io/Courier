@@ -7,6 +7,8 @@ from pathlib import Path
 from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
+import dj_database_url
+
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -102,7 +104,9 @@ DATABASES = {
     }
 }
 
-
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -134,11 +138,12 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = "/var/www/ams.syscrews.com/media_cdn/"
 
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+#STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
 
-STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ตรวจสอบว่ามีบรรทัดนี้
 
-# STATIC_ROOT = os.path.join(BASE_DIR, Staticfiles)
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 

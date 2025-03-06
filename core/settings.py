@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -103,6 +104,19 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+"""
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Logistics_db',
+        'USER': 'Logistics_post',
+        'PASSWORD': 'AVNS_kzFZ4iiVAawNF9iOI1y',
+        'HOST': 'db-postgresql-nyc3-38115-do-user-17783683-0.l.db.ondigitalocean.com',
+        'PORT': '25060',
+        'sslmode' : 'require',
+    }
+}
+
 
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)

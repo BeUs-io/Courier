@@ -1,0 +1,350 @@
+{% extends 'layouts/dashboard.html' %}
+{% load accounts static %}
+
+{% block content %}
+    <h3 class="card-title">Dashboard</h3>
+
+    <div class="row">
+
+        {% if request|perms_require:"accounts.view_users" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="text-primary bi bi-person-fill-gear" viewBox="0 0 16 16">
+                                <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ user_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'user_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Users
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"accounts.view_group" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="text-primary bi bi-person-fill-lock" viewBox="0 0 16 16">
+                                <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5v-1a1.9 1.9 0 0 1 .01-.2 4.49 4.49 0 0 1 1.534-3.693C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm7 0a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ group_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'user_groups_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Groups
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"accounts.view_designationmodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="text-primary bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ designation_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'designation_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Designations
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"dashboard.view_assetmodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon text-primary" style="width: 1.9em; height: 2em;margin-left: -2px; vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1">
+                                    <path d="M588.32 768a15.04 15.04 0 0 1-10.08-3.84 16 16 0 0 1-5.44-12.16 16 16 0 0 1 5.6-12.32 16 16 0 0 1 12.64-3.84A16 16 0 0 1 608 752a16 16 0 0 1-14.72 16h-4.96zM576.8 867.84a16 16 0 0 1-14.08-23.68 18.4 18.4 0 0 0 1.92-4 16 16 0 0 1 8.8-9.44 16 16 0 0 1 12.96 0A12.48 12.48 0 0 0 592 832a16 16 0 0 1 0 32 16 16 0 0 0-7.68 1.92 16 16 0 0 1-7.52 1.92zM272.8 816H208a16 16 0 0 1-16-16 48 48 0 0 0-48-48 16 16 0 0 1-16-16V480a16 16 0 0 1 16-16 48 48 0 0 0 48-48 16 16 0 0 1 16-16h608a16 16 0 0 1 16 16 48 48 0 0 0 48 48 16 16 0 0 1 16 16v112a16 16 0 0 1-32 0 16 16 0 0 0-16-16H592a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16 16 16 0 0 1 0 32 16 16 0 0 0-16 16 16 16 0 0 1-28.8 9.6A143.04 143.04 0 0 0 432 640a140.8 140.8 0 0 0-27.52 2.56 144 144 0 0 0-115.68 156 16 16 0 0 1-16 17.44z m-50.4-32H256a176 176 0 0 1 142.4-172.8A178.56 178.56 0 0 1 432 608a174.72 174.72 0 0 1 122.72 49.76l1.6-1.76a48 48 0 0 1-12.32-32v-32a48 48 0 0 1 48-48h256a48 48 0 0 1 16 2.72V494.4a80 80 0 0 1-62.4-62.4H222.4a80 80 0 0 1-62.4 62.4v227.2a80 80 0 0 1 62.4 62.4z"></path>
+                                    <path d="M880 704a16 16 0 0 1-16-16 16 16 0 0 0-16-16 16 16 0 0 1 0-32 16 16 0 0 0 16-16 16 16 0 0 1 32 0v64a16 16 0 0 1-16 16zM588.32 768a15.04 15.04 0 0 1-10.08-3.84 16 16 0 0 1-5.44-12.16 16 16 0 0 1 5.6-12.32 16 16 0 0 1 12.64-3.84A16 16 0 0 1 608 752a16 16 0 0 1-14.72 16h-4.96z"></path>
+                                    <path d="M272.8 816H208a16 16 0 0 1-16-16 48 48 0 0 0-48-48 16 16 0 0 1-16-16V480a16 16 0 0 1 16-16 48 48 0 0 0 48-48 16 16 0 0 1 16-16h608a16 16 0 0 1 16 16 48 48 0 0 0 48 48 16 16 0 0 1 16 16v112a16 16 0 0 1-32 0 16 16 0 0 0-16-16H592a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16 16 16 0 0 1 0 32 16 16 0 0 0-16 16 16 16 0 0 1-28.8 9.6A143.04 143.04 0 0 0 432 640a140.8 140.8 0 0 0-27.52 2.56 144 144 0 0 0-115.68 156 16 16 0 0 1-16 17.44z m-50.4-32H256a176 176 0 0 1 142.4-172.8A178.56 178.56 0 0 1 432 608a174.72 174.72 0 0 1 122.72 49.76l1.6-1.76a48 48 0 0 1-12.32-32v-32a48 48 0 0 1 48-48h256a48 48 0 0 1 16 2.72V494.4a80 80 0 0 1-62.4-62.4H222.4a80 80 0 0 1-62.4 62.4v227.2a80 80 0 0 1 62.4 62.4z"></path>
+                                    <path d="M880 704a16 16 0 0 1-16-16 16 16 0 0 0-16-16 16 16 0 0 1 0-32 16 16 0 0 0 16-16 16 16 0 0 1 32 0v64a16 16 0 0 1-16 16zM560 704a16 16 0 0 1-12.8-6.4A143.04 143.04 0 0 0 432 640a140.8 140.8 0 0 0-27.52 2.56 16 16 0 0 1-12.16-2.56 16 16 0 0 1-6.72-10.72A133.28 133.28 0 0 1 384 608c0-80 57.44-144 128-144a128 128 0 0 1 118.88 90.72 16 16 0 0 1-15.04 21.28H592a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16 16 16 0 0 1 0 32 16 16 0 0 0-16 16 16 16 0 0 1-10.88 16 19.04 19.04 0 0 1-5.12 0z m-128-96a174.72 174.72 0 0 1 122.72 49.76l1.6-1.76a48 48 0 0 1-12.32-32v-32a48 48 0 0 1 46.88-48A92.48 92.48 0 0 0 512 496c-52.96 0-96 50.24-96 112h16z"></path>
+                                    <path d="M432 960a176.96 176.96 0 0 1-152.48-88 176 176 0 0 1-22.72-70.4c0-5.92-0.8-11.68-0.8-17.6a176 176 0 0 1 142.4-172.8A178.56 178.56 0 0 1 432 608a174.72 174.72 0 0 1 140.8 70.4l3.2 4.48a156.16 156.16 0 0 1 13.92 23.52 179.36 179.36 0 0 1 14.56 42.08v2.08A180.8 180.8 0 0 1 608 784v17.44a174.4 174.4 0 0 1-12.8 50.24c0 2.08-2.08 4.96-3.52 7.84a105.6 105.6 0 0 1-6.56 12.48 139.68 139.68 0 0 1-8.32 13.12l-3.2 4.32A174.72 174.72 0 0 1 432 960z m0-320a140.8 140.8 0 0 0-27.52 2.56 144 144 0 0 0-115.68 156 141.92 141.92 0 0 0 18.56 57.44A144 144 0 0 0 544 874.08l3.04-4a107.04 107.04 0 0 0 9.28-14.08 99.84 99.84 0 0 0 5.6-10.88 26.72 26.72 0 0 0 2.4-4.96A142.24 142.24 0 0 0 576 798.4V784a144 144 0 0 0-2.88-28.64v-1.76a146.56 146.56 0 0 0-12-33.6 132.48 132.48 0 0 0-13.92-22.56l-3.2-4.32A142.88 142.88 0 0 0 432 640z"></path>
+                                    <path d="M432 896a110.08 110.08 0 0 1-61.92-18.72 112 112 0 0 1-48-74.72A114.56 114.56 0 0 1 320 784a112 112 0 0 1 103.68-112H432a112 112 0 0 1 96 55.84A109.92 109.92 0 0 1 544 784a119.84 119.84 0 0 1-1.6 18.72 112 112 0 0 1-48 74.56A109.28 109.28 0 0 1 432 896z m0-192h-6.08A80 80 0 0 0 352 784a70.24 70.24 0 0 0 1.12 13.12 80 80 0 0 0 34.72 53.6 81.12 81.12 0 0 0 88.16 0 79.04 79.04 0 0 0 34.72-53.28A70.24 70.24 0 0 0 512 784a78.4 78.4 0 0 0-10.72-40A80 80 0 0 0 432 704z"></path>
+                                    <path d="M432 896a110.08 110.08 0 0 1-61.92-18.72 112 112 0 0 1-48-74.72A114.56 114.56 0 0 1 320 784a112 112 0 0 1 103.68-112H432a112 112 0 0 1 96 55.84A109.92 109.92 0 0 1 544 784a104.96 104.96 0 0 1-1.76 18.88 110.4 110.4 0 0 1-48 74.4A109.28 109.28 0 0 1 432 896z m0-192h-6.08A80 80 0 0 0 352 784a70.24 70.24 0 0 0 1.12 13.12 80 80 0 0 0 34.72 53.6 81.12 81.12 0 0 0 88.16 0 79.04 79.04 0 0 0 34.72-53.28A64 64 0 0 0 512 784a78.4 78.4 0 0 0-10.72-40A80 80 0 0 0 432 704zM848 960H592a48 48 0 0 1-48-48v-32a16 16 0 0 1 3.36-9.76 107.04 107.04 0 0 0 9.28-14.08 99.84 99.84 0 0 0 5.6-10.88 16 16 0 0 1 7.04-7.36A47.04 47.04 0 0 1 592 832h256a48 48 0 0 1 41.44 24A46.72 46.72 0 0 1 896 880v32a48 48 0 0 1-48 48z m-272-74.88V912a16 16 0 0 0 16 16h256a16 16 0 0 0 16-16v-32a16 16 0 0 0-2.08-7.84A16 16 0 0 0 848 864H592a13.28 13.28 0 0 0-3.52 0c-1.28 2.56-2.72 5.12-4.16 7.52a139.68 139.68 0 0 1-8.32 13.6z"></path>
+                                    <path d="M848 864H592a44.16 44.16 0 0 1-19.04-4 16 16 0 0 1-8-20.8A137.92 137.92 0 0 0 576 798.4V784a144 144 0 0 0-2.88-28.64 16 16 0 0 1 2.56-12.32 16 16 0 0 1 10.56-6.72A32.96 32.96 0 0 1 592 736h256a48 48 0 0 1 48 48v32a48 48 0 0 1-48 48z m-246.72-32H848a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16H608v33.44a172.16 172.16 0 0 1-6.72 30.56z"></path>
+                                    <path d="M848 768H592a32.96 32.96 0 0 1-5.76 0 16 16 0 0 1-13.12-12.48 142.72 142.72 0 0 0-12-35.52 132.48 132.48 0 0 0-13.92-22.56A16 16 0 0 1 544 688a48 48 0 0 1 48-48h256a48 48 0 0 1 48 48v32a46.4 46.4 0 0 1-6.72 24.32A48 48 0 0 1 848 768z m-272-84.32a158.08 158.08 0 0 1 13.28 22.72 168.96 168.96 0 0 1 12 29.6H848a16 16 0 0 0 13.6-7.84A14.24 14.24 0 0 0 864 720v-32a16 16 0 0 0-16-16H592a16 16 0 0 0-16 11.68z"></path>
+                                    <path d="M848 672H592a48 48 0 0 1-48-48v-32a48 48 0 0 1 48-48h256a48 48 0 0 1 48 48v32a48 48 0 0 1-48 48z m-256-96a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h256a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z"></path>
+                                    <path d="M880 880h-4.32a16 16 0 0 1-13.76-8A16 16 0 0 0 848 864a16 16 0 0 1 0-32 16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16 16 16 0 0 1 0-32 16 16 0 0 0 13.6-7.84A14.24 14.24 0 0 0 864 720V494.4a80 80 0 0 1-62.4-62.4H222.4a80 80 0 0 1-62.4 62.4v227.2a80 80 0 0 1 62.4 62.4h50.4a16 16 0 0 1 16 14.4 141.76 141.76 0 0 0 18.56 57.6 16 16 0 0 1 0 16 16 16 0 0 1-13.92 8H144a73.12 73.12 0 0 1-21.44-3.04A80 80 0 0 1 64 800V416a80 80 0 0 1 80-80h736a73.12 73.12 0 0 1 21.44 3.04A80 80 0 0 1 960 416v384a80 80 0 0 1-80 80zM144 368a48 48 0 0 0-48 48v384a48 48 0 0 0 35.2 46.08A44.32 44.32 0 0 0 144 848h124a186.88 186.88 0 0 1-9.12-32H208a16 16 0 0 1-16-16 48 48 0 0 0-48-48 16 16 0 0 1-16-16V480a16 16 0 0 1 16-16 48 48 0 0 0 48-48 16 16 0 0 1 16-16h608a16 16 0 0 1 16 16 48 48 0 0 0 48 48 16 16 0 0 1 16 16v240a46.4 46.4 0 0 1-6.72 24.32 44.96 44.96 0 0 1-5.6 7.68 48 48 0 0 1 12.32 32v32a48 48 0 0 1-12.16 32A48 48 0 0 0 928 800V416a48 48 0 0 0-35.2-46.08A44.32 44.32 0 0 0 880 368z"></path>
+                                    <path d="M864 368h-74.24a16 16 0 0 1-13.92-8L704 235.52a80 80 0 0 1-85.28-22.88l-265.44 153.28a16.96 16.96 0 0 1-8 2.08h-128a16 16 0 0 1-16-11.84 16 16 0 0 1 7.52-18.08L638.72 90.24a80 80 0 0 1 109.28 29.28l129.44 224a16 16 0 0 1 0 16A16 16 0 0 1 864 368z m-64-32h36.8L720 135.52a48 48 0 0 0-65.44-17.44L277.12 336h64l274.24-158.4a16.96 16.96 0 0 1 12.16-1.6 16 16 0 0 1 9.76 7.52 35.2 35.2 0 0 0 3.04 4.8 48 48 0 0 0 62.56 12.8 16 16 0 0 1 21.92 5.92z"></path>
+                                    <path d="M789.76 368H345.28a16 16 0 0 1-16-11.84 16 16 0 0 1 7.52-18.08l277.92-160a16.96 16.96 0 0 1 12.16-1.6 16 16 0 0 1 9.76 7.52 35.2 35.2 0 0 0 3.04 4.8 48 48 0 0 0 62.56 12.8 16 16 0 0 1 21.92 5.92l79.04 136.96a16 16 0 0 1 0 16 16 16 0 0 1-13.44 7.52z m-384-32h356.32L704 235.52a80 80 0 0 1-85.28-22.88z"></path>
+                                </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ asset_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'asset_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Assets
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"dashboard.view_assetstatusmodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="text-primary bi bi-tags-fill" viewBox="0 0 16 16">
+                                <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
+                                <path d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ asset_status_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'asset_status_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Asset Status
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"dashboard.view_categorymodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-primary" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 122.88 99.094" xml:space="preserve">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M28.828,0h94.052v67.744h-9.37V9.369H28.828V0L28.828,0z M14.055,15.135h94.049 v67.744h-8.358V24.864H14.055V15.135L14.055,15.135z M0,31.349h94.052v67.745H0V31.349L0,31.349z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ category_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'category_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Categories
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"dashboard.view_suppliermodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" fill="currentColor" style="height: 26px; width: 26px;" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" viewBox="0 0 122.88 94.18" xml:space="preserve">
+                                <g>
+                                    <path class="st0" d="M34.02,65.66c5.81,12.12,23.43,12.54,28.99,0.07c-1.51-1.54-2.64-3.19-3.76-4.82 c-0.18-0.26-0.37-0.54-0.56-0.8c-2.69,2.13-5.94,3.49-10.19,3.48c-4.58-0.01-8.03-1.77-10.86-4.35c-0.17-0.15-0.34-0.31-0.5-0.47 c-0.4,1.13-0.92,2.47-1.47,3.73C35.13,63.69,34.56,64.84,34.02,65.66L34.02,65.66L34.02,65.66z M104.88,56.89V78.4l-8.6-5.04 l-8.66,5.47V56.89H75.39c-1.16,0-2.12,0.95-2.12,2.12v29.34c0,1.16,0.96,2.11,2.12,2.11h41.73c1.16,0,2.11-0.96,2.11-2.11V59 c0-1.16-0.95-2.12-2.11-2.12H104.88L104.88,56.89z M91.27,56.89v15.34l4.94-3.12l5.03,2.95V56.89H91.27L91.27,56.89z M75.39,53.24 h12.24h17.26h12.24c1.58,0,3.01,0.65,4.06,1.69l0.01,0.01c1.04,1.04,1.69,2.48,1.69,4.06v29.34c0,1.57-0.65,3.01-1.69,4.05 l-0.01,0.01c-1.05,1.04-2.49,1.69-4.05,1.69H93.79c-0.06,0.03-0.13,0.06-0.19,0.08H2.51c-3.54-0.7-5.39-13.17,8.9-21.14 c5.77-3.22,14.63-4.28,20.86-8.63c0.46-0.69,0.95-1.69,1.43-2.77c0.71-1.64,1.37-3.42,1.79-4.63c-1.75-2.05-3.23-4.37-4.67-6.66 l-4.73-6.14c-1.73-2.58-2.62-4.94-2.68-6.86c-0.03-0.91,0.13-1.74,0.46-2.46c0.36-0.76,0.89-1.39,1.63-1.89 c0.34-0.23,0.72-0.42,1.15-0.58c-0.31-4.07-0.42-7.83-0.23-12.14c0.1-1.02,0.3-2.04,0.58-3.06c5.72-20.36,35.63-22.69,39.84-6.77 c2.62,2.84,4.27,6.6,4.63,11.58L71.17,32.9l0,0c1.31,0.4,2.15,1.23,2.49,2.58c0.38,1.49-0.03,3.59-1.3,6.46l0,0 c-0.02,0.05-0.05,0.1-0.08,0.15l-5.39,7.49c-1.97,3.26-3.99,6.53-6.61,9.1c0.23,0.34,0.47,0.69,0.71,1.02 c1.07,1.56,2.14,3.13,3.53,4.53c0.05,0.04,0.08,0.08,0.11,0.13l0,0c1.57,1.11,3.25,2,4.99,2.77V59c0-1.59,0.65-3.03,1.69-4.07 C72.36,53.89,73.8,53.24,75.39,53.24L75.39,53.24z M29.38,34.6c-1.04,0.04-1.84,0.25-2.38,0.62c-0.31,0.21-0.54,0.47-0.69,0.79 c-0.16,0.35-0.24,0.78-0.23,1.27c0.04,1.44,0.8,3.32,2.25,5.48l0.02,0.03l0,0l4.73,6.14c1.89,3.02,3.88,6.08,6.35,8.34 c2.38,2.17,5.26,3.64,9.06,3.65c4.13,0.01,7.15-1.51,9.59-3.81c2.55-2.39,4.56-5.65,6.54-8.91l5.32-7.39 c1-2.27,1.35-3.78,1.13-4.66c-0.13-0.53-0.71-0.79-1.71-0.84c-0.21-0.01-0.43-0.01-0.65-0.01c-0.24,0.01-0.49,0.02-0.74,0.05 c-0.14,0.01-0.28,0-0.41-0.03c-0.47,0.03-0.96-0.01-1.46-0.08l1.82-6.69c-13.53,2.13-23.65-7.92-37.95-2.01l1.03,8.13 C30.42,34.69,29.89,34.67,29.38,34.6L29.38,34.6L29.38,34.6L29.38,34.6z"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ supplier_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'supplier_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Suppliers
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if request|perms_require:"dashboard.view_departmentmodel" %}
+            <div class="col-md-4 col-lg-3 p-2">
+                <div class="card shadow-sm">
+                    <div class="card-body p-2 px-4 justify-content-between align-items-center d-flex">
+                        <span class="account-icon-bg m-3 ms-0" style="border-radius: 30%; margin-top: 10px !important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi text-primary bi-diagram-3-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"></path>
+                            </svg>
+                        </span>
+                        <div class="fs-1 card-title fw-bold">{{ department_count }}</div>
+                    </div>
+                    <div class="card-footer py-2 border-0 bg-primary2">
+                        <a href="{% url 'department_list' %}">
+                            <div class="text-start mx-3 fs-6">
+                                Departments
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="col-12 p-2">
+            <div class="card p-4">
+                <div class="w-100 d-flex align-items-center justify-content-between">
+                    <h4>Asset Request</h4>
+                    <a class="mb-2">
+                        <label for="id_filter" class="pointer">
+                            <svg viewBox="0 0 24 24" height="30" width="30" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.8258 5H6.17422C5.31987 5 4.85896 6.00212 5.41496 6.65079L9.75926 11.7191C9.91461 11.9004 10 12.1312 10 12.3699V17.382C10 17.7607 10.214 18.107 10.5528 18.2764L12.5528 19.2764C13.2177 19.6088 14 19.1253 14 18.382V12.3699C14 12.1312 14.0854 11.9004 14.2407 11.7191L18.585 6.65079C19.141 6.00212 18.6801 5 17.8258 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </label>
+                        <input style="width:0;shadow:none" class="border-0" id="id_filter" name="filter">
+                    </a>
+                </div>
+                <div id="chart"></div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'plugins/daterangepicker/daterangepicker.css' %}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'plugins/apexcharts/apexcharts.min.js' %}"></script>
+<script src="{% static 'plugins/momentjs/moment.min.js' %}"></script>
+<script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+
+<script>
+    var options = {
+        locale : {
+            direction: 'ltr',
+            format: 'YYYY-MM-DD',
+            separator: '&',
+            applyLabel: 'Filter',
+            cancelLabel: 'Cancel',
+            fromLabel: 'From',
+            toLabel: 'To',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+        },
+        opens: 'left',
+        minDay:7,
+        maxDay:15,
+        minDate: moment().subtract(60, 'days').startOf('day'),
+        maxDate: moment().startOf('day'),
+        startDate: moment().subtract(7, 'days').startOf('day'),
+        endDate: moment().startOf('day').add(14, 'day'),
+        cancelClass: 'btn btn-danger btn-sm',
+        applyClass: "btn btn-primary btn-sm",
+    }
+    var dateRangeFilter = $('input[name="filter"]')
+    dateRangeFilter.daterangepicker(options, function(start, end, label) {});
+    var options = {
+        series: [
+            {
+                name: 'Request',
+                data: [],
+                color:'var(--primary)'
+            }
+        ],
+        chart: {
+            type: 'bar',
+            height: 450,
+            stacked: false,
+            toolbar: {show: false},
+            zoom: {enabled: false}
+        },
+        responsive: [{
+            breakpoint: 480,
+        }],
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                borderRadius: 5,
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 900
+                        }
+                    }
+                }
+            },
+        },
+        xaxis: {
+            type: 'datetime',
+            categories: [],
+        },
+        legend: {
+            position: 'bottom',
+            offsetY: 10
+        },
+        fill: {opacity: 1}
+    };
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    dateRangeFilter.on('apply.daterangepicker', function(ev, picker) {
+        const filterValue = $('input[name="filter"]').val();
+        loadAssetRequestBarData(filterValue, chart)
+    })
+      function loadAssetRequestBarData(date, chart){
+        $.ajax({
+            url: "{% url 'asset_request_bar' %}",
+            data: {"date":date},
+            type: "GET",
+            cache: false,
+            success: function(res){
+              const categories = [];
+              const data = [];
+              for (let i = 0; i < res.data.length; i++) {
+                categories.push(res.data[i].date)
+                data.push(res.data[i].count)
+              }
+              chart.updateOptions({
+                xaxis:{categories},
+                series: [{name: 'Request', color:'var(--primary)', data: data}]
+              })
+            }
+          });
+      }
+      const filterValue = $('input[name="filter"]').val();
+      loadAssetRequestBarData(filterValue, chart)
+</script>
+{% endblock %}

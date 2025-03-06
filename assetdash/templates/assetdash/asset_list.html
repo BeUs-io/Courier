@@ -1,0 +1,40 @@
+{% extends "layouts/assetdash.html" %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{% static 'css/timeline.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+  <nav class="chevron-right" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'assetdash' %}" class="h-u-line">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+    </ol>
+  </nav>
+
+  <h3 class="card-title">{{title}}</h3>
+  <div class="container py-3">
+      {% comment %} <div class="col-12 card">
+        <div class="row">
+          <div class="p-0 order-2 order-xl-1 col-xl-5">
+            <div class="timeline">
+              <div class="tracking-list">
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="09 Aug 2025, 10:00am" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="10 Aug 2025, 10:00am" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="11 Aug 2025, 10:00am" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="12 Aug 2025, 10:00am" blinker="1" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="13 Aug 2025, 10:00am" pending="True" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="14 Aug 2025, 10:00am" pending="True" %}
+                {% include "includes/timeline/item.html" with title="This is an info callout" date="15 Aug 2025, 10:00am" pending="True" %}
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 order-1 order-xl-2 my-xl-auto my-4">
+            <img class="img-fluid pe-xl-4 px-2 px-xl-3" src="http://127.0.0.1:8000/media/asset/image/Screenshot_2023-11-12_at_9.21.46_AM.png">
+          </div>
+        </div>
+      </div> {% endcomment %}
+    </div>
+  </div>
+{% endblock %}

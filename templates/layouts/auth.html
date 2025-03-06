@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_extra_css %}
+    {% block extra_css %}{% endblock %}
+{% endblock %}
+
+{% block main_extra_js %}
+    {% block extra_js %}{% endblock %}
+{% endblock %}
+
+{% block main_content %}
+    <section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-sm-center h-100">
+				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+					<div class="text-center my-5">
+                        <a href="{% url 'dashboard' %}">
+                            {% if ams.logo %}
+						        <img src="{{ ams.logo.url }}" alt="logo" width="100">
+                                {% else %}
+                                <h3>{{ site.name }}</h3>
+                            {% endif %}
+                        </a>
+					</div>
+                    {% block content %}{% endblock %}
+					<div class="text-center mt-5 text-muted">
+						© <script>document.write(new Date().getFullYear())</script> <a href="//syscrews.com" target="_blank" class="text-primary text-decoration-none">syscrews</a>. All rights reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

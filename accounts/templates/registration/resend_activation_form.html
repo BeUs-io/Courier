@@ -1,0 +1,42 @@
+{% extends "layouts/auth.html" %}
+{% load i18n crispy_forms_filters %}
+
+{% block title %}{% trans "Resend Activation Email" %}{% endblock %}
+{% block extra_css %}
+    <style>
+        #submitBtn[disabled=disabled]{border: 0;padding: 0;height: 0;}
+    </style>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function() {
+            $( "#ResendActivationEmailForm" ).submit(function( event ) {
+                event.preventDefault();
+                $("#submitBtn").attr('disabled', true);
+                $("#submitBtn").html(`<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>`);
+                event.currentTarget.submit();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="card shadow-lg">
+        <div class="card-body p-5">
+            <h1 class="fs-4 card-title fw-bold mb-4">{% trans "Resend Activation Email" %}</h1>
+            <form method="post" action="" id="ResendActivationEmailForm">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" id="submitBtn" class="btn btn-primary ms-auto">
+                    {% trans 'Submit' %}
+                </button>
+            </form>
+        </div>
+        <div class="card-footer bg-primary2 py-3 border-0">
+            <div class="text-center">
+                Already have an account? <a href="{% url 'auth_login' %}" class="text-primary">Login</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

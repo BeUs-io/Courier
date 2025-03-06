@@ -108,8 +108,8 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
+        'NAME': 'Logistics_db',
+        'USER': 'Logistics_post',
         'PASSWORD': 'AVNS_kzFZ4iiVAawNF9iOI1y',
         'HOST': 'db-postgresql-nyc3-38115-do-user-17783683-0.l.db.ondigitalocean.com',
         'PORT': '25060',

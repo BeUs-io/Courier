@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    
 
     # packages
     'registration',
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'Logistics_db',
         'USER': 'postgres',
         'PASSWORD': 'Rich@168',
         'HOST': 'localhost',

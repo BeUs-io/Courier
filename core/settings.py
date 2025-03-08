@@ -21,12 +21,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', "key")
 # DEBUG = False
 DEBUG = os.getenv('DEBUG', 'True') =='True'
 
-# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
-ALLOWED_HOSTS = [
-    "courier-app-h2dh4.ondigitalocean.app",
-    "www.courier-app-h2dh4.ondigitalocean.app",
-    # "your-custom-domain.com",  # ถ้ามีโดเมนจริงให้เพิ่มที่นี่
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+
 
 SITE_ID = 1
 

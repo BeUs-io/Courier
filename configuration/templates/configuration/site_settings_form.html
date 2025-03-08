@@ -1,0 +1,39 @@
+{% extends "layouts/dashboard.html" %}
+{% load accounts %}
+{% load crispy_forms_tags %}
+{% block extra_js %}
+<script>
+    function colorChange(){
+        const color = document.getElementById('id_color')
+        ThemeColorChange(color.value)
+    }
+    function CheckUnderConstruction(){
+        if(document.getElementById('id_under_construction').checked) {
+            $("#div_id_message").show();
+        } else {
+            $("#div_id_message").hide();
+        }
+    }
+
+    $("#id_under_construction").change(function (){
+        CheckUnderConstruction()
+    })
+    CheckUnderConstruction()
+</script>
+{% endblock %}
+{% block content %}
+    <nav class="chevron-right" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="h-u-line">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'site_settings' %}" class="h-u-line">Settings</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+      </ol>
+    </nav>
+
+    <h1 class="h2 mb-3 d-inline-block">{{ title|capfirst }}</h1>
+    <div class="rounded card p-4">
+        <form method="POST" enctype="multipart/form-data">
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock %}

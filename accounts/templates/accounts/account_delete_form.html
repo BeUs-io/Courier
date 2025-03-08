@@ -1,0 +1,29 @@
+{% extends "layouts/assetdash.html" %}
+{% load crispy_forms_tags %}
+{% block extra_css %}
+    <style>
+        .btn-danger{
+            background: var(--bs-danger) !important;
+            border: unset;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <nav class="chevron-right" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="h-u-line">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'account' %}" class="h-u-line">Account</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+      </ol>
+    </nav>
+
+    <h1 class="h2 mb-3 d-inline-block">{{ title|capfirst }}</h1>
+    <div class="rounded card p-4">
+        <div class="alert alert-danger p-2" role="alert">
+            Deleting your account is permanent, and will remove all the data associated with it.
+        </div>
+        <form method="post" id="delete_account">
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock %}

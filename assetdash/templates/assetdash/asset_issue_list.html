@@ -1,0 +1,12 @@
+{% extends "layouts/assetdash.html" %}
+
+{% block content %}
+  <nav class="chevron-right" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'assetdash' %}" class="h-u-line">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+    </ol>
+  </nav>
+
+  <h3 class="card-title">{{title}}</h3>
+{% endblock %}

@@ -21,8 +21,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', "key")
 # DEBUG = False
 DEBUG = os.getenv('DEBUG', 'True') =='True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
-
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ["courier-app-h2dh4.ondigitalocean.app",'127.0.0.1,localhost']
 SITE_ID = 1
 
 # Application definition

@@ -169,13 +169,13 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = 'media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
-MEDIA_ROOT = "/var/www/ams.syscrews.com/media_cdn/"
+# MEDIA_ROOT = "/var/www/ams.syscrews.com/media_cdn/"
 
-STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
+# STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
 
 
 

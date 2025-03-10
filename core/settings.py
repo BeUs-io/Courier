@@ -107,17 +107,29 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'postgres'),
-            'USER': os.getenv('DB_USER', 'postgres'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'Rich@168'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
+            'NAME': os.getenv('DB_NAME', 'db'),
+            'USER': os.getenv('DB_USER', 'db'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'AVNS_jtzGy0gz9AQn0RPRvv6'),
+            'HOST': os.getenv('DB_HOST', 'app-dcab1949-e81e-4886-bbdb-0c5c63fb82eb-do-user-17783683-0.k.db.ondigitalocean.com'),
+            'PORT': os.getenv('DB_PORT', '25060'),
+            'sslmode' : 'require'
         }
     }   
 
 
 
 """
+
+host=app-dcab1949-e81e-4886-bbdb-0c5c63fb82eb-do-user-17783683-0.k.db.ondigitalocean.com 
+port=25060 
+username=db 
+password=AVNS_jtzGy0gz9AQn0RPRvv6 
+database=db 
+sslmode=require
+
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

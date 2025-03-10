@@ -121,7 +121,6 @@ else:
 
 
 """
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -190,9 +189,6 @@ REGISTRATION_FORM = "accounts.forms.RegistrationForm"
 
 # Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Django Debug Toolbar Setting
-DEBUG = True
 
 
 

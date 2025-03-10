@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES_URL = os.getenv('DATABASE_URL', None)
 
-
+"""
 if not DATABASES_URL:
     DATABASES = {
         'default': {
@@ -117,7 +117,7 @@ else:
             'sslmode' : 'require'
         }
     }   
-
+"""
 
 
 """

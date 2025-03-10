@@ -120,16 +120,6 @@ else:
 
 """
 
-host=app-dcab1949-e81e-4886-bbdb-0c5c63fb82eb-do-user-17783683-0.k.db.ondigitalocean.com 
-port=25060 
-username=db 
-password=AVNS_jtzGy0gz9AQn0RPRvv6 
-database=db 
-sslmode=require
-
-
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

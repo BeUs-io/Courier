@@ -165,11 +165,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'assets'
+# STATIC_ROOT = BASE_DIR / 'assets'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
+MEDIA_ROOT = "/var/www/ams.syscrews.com/media_cdn/"
+
+STATIC_ROOT = "/var/www/ams.syscrews.com/static_cdn/"
+
 
 
 
